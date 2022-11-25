@@ -1,4 +1,5 @@
-const { cats } = require("../../content/data/cats")
+const cats = require("../../content/data/cats.json")
+
 
 let renderedCatList=()=>{
     let result='';
