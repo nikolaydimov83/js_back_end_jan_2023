@@ -2,14 +2,19 @@ const http=require('http');
 const url=require('url');
 const querystring=require('querystring');
 const fs=require('fs');
+const {readMyFile}=require('./content/data/dataProccessing')
 
 const { pathHandlerObject } = require('./src/pathHandler');
 const path1 = require('path');
 const port=4040
-
+const endPoints={
+  allCats:path1.join(__dirname,'content/data/cats.json')
+}
+console.log(endPoints.allCats)
 let server = http.createServer((req,res)=>{
     let pathname=url.parse(req.url).pathname;
-    let responseBody=pathHandlerObject[pathname]();
+    let allCats=readMyFile(endPoints.allCats)
+    let responseBody=pathHandlerObject[pathname](allCats);
 
     if (responseBody.isFileRequest) {
       res.setHeader('Content-Type', 'image/x-icon');

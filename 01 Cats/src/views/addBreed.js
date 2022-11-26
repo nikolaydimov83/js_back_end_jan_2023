@@ -1,21 +1,5 @@
-
-let renderedCatList=(cats)=>{
-    let result='';
-    cats.forEach((cat)=>{
-    result+=`<li>
-    <img src=${cat.image} alt="${cat.catName}">
-    <h3>${cat.catName}</h3>
-    <p><span>Breed: </span>${cat.breed}</p>
-    <p><span>Description: </span>${cat.description}</p>
-    <ul class="buttons">
-        <li class="btn edit"><a href="">Change Info</a></li>
-        <li class="btn delete"><a href="">New Home</a></li>
-    </ul>
-</li>`
-    });
-    return result
-}
-const homeView=(cats)=>`<!DOCTYPE html>
+let addBreedView=()=>{
+let formAsString=`<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,7 +8,7 @@ const homeView=(cats)=>`<!DOCTYPE html>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../../content/styles/site.css">
-    <link rel="icon" type="image/x-icon" href="../../content/images/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="../../content/images/pawprint.ico" />
     <title>Cat Shelter</title>
 </head>
 
@@ -44,16 +28,15 @@ const homeView=(cats)=>`<!DOCTYPE html>
         </form>
     </header>
 
-    <main>
-        <section class="cats">
-            <ul>
-            ${renderedCatList(cats)}
-            </ul>
-        </section>
-    </main>
-
+<form class="cat-form" method="post">
+<label for="breed">Breed Name</label>
+<input name="breed" type="text" id="breed">
+<button>Add Breed</button>
+</form>
 </body>
 
-</html>`
+</html>`;
+return formAsString
+}
 
-module.exports={homeView}
+module.exports={addBreedView}
