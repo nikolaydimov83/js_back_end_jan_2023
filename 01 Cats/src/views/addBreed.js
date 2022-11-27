@@ -8,8 +8,9 @@ let formAsString=`<!DOCTYPE html>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../../content/styles/site.css">
-    <link rel="shortcut icon" type="image/png" href="../../content/images/pawprint.ico" />
+    <link rel="icon" type="image/x-icon" href="../../content/images/icon.png" />
     <title>Cat Shelter</title>
+    <script src="/cats/src/frontend/breedsForm.js" type="module"></script>
 </head>
 
 <body>

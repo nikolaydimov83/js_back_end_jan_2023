@@ -46,6 +46,20 @@ let pathHandlerObject={
         header.status=200;
         header.contentType={"Content-Type":"text/html"};
         return{content,header}
+    },
+    '/cats/src/frontend/breedsForm.js':(data)=>{
+        let header={};
+        header.status=200;
+        header.contentType={'Content-Type':'text/javascript'};
+        let content='';
+        let isFileRequest=true
+        return{content,header,isFileRequest}
+    },
+    '/cats/add-breed/addBreed':()=>{
+        let header={};
+        header.status=200;
+        let content='';
+        return {header,content}
     }
 }
 
