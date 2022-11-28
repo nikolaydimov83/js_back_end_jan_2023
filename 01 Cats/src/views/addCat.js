@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+const { readMyFile } = require("../../content/data/dataProccessing")
+
+let addCatView=(breeds)=>`<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -23,7 +25,7 @@
         <h1>Cat Shelter</h1>
     </header>
     <main>
-        <form action="#" method="" class="cat-form" enctype="multipart/form-data">
+        <form class="cat-form" enctype="multipart/form-data">
             <h2>Add Cat</h2>
             <label for="name">Name</label>
             <input name="name" type="text" id="name">
@@ -33,13 +35,21 @@
             <input name="upload" type="file" id="image">
             <label for="group">Breed</label>
             <select name="breed" id="group">
-                <option value="Fluffy Cat">Fluffy Cat</option>
-				<option value="Fluffy Cat">Fluffy Cat</option>
-				<option value="Fluffy Cat">Fluffy Cat</option>
+                ${renderCatBreedOptions(breeds)}
             </select>
             <button type="submit">Add Cat</button>
         </form>
     </main>
 </body>
 
-</html>
+</html>`
+
+function renderCatBreedOptions(breeds){
+    let finalString='';
+    breeds.forEach((breed) => {
+        finalString+=`<option>${JSON.parse(breed).newBreed}</option>`
+    });
+    return finalString;
+}
+
+module.exports={addCatView}

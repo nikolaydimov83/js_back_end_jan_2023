@@ -55,11 +55,35 @@ let pathHandlerObject={
         let isFileRequest=true
         return{content,header,isFileRequest}
     },
-    '/cats/add-breed/addBreed':()=>{
+    '/cats/add-breed/addBreed':(cats,req)=>{
         let header={};
-        header.status=200;
+        
         let content='';
-        return {header,content}
+        let body='';
+        if(req.method.toLowerCase()==='post'){
+
+      try{
+                    req.on('data', (chunk) => {
+                body += chunk;
+            });
+            req.on('end', () => {
+                console.log(body);
+                let breeds=readMyFile('content/data/breeds.json');
+                breeds.push(body);
+                writeMyFile('content/data/breeds.json',JSON.stringify(breeds));
+                content=homeView();
+                header.status=200;
+                return {header,content,isFileRequest}
+            });
+      }catch(err){
+        header.status=400;
+        content={message:err.message}
+        return {header,content,isFileRequest}
+      }
+
+            
+            }
+        
     }
 }
 

@@ -9,5 +9,5 @@ let response=await fetch('http://localhost:4040/cats/add-breed/addBreed',{
     },
     body:JSON.stringify({newBreed})
 })
-console.log(response.json())
+//console.log(response.json())
 })
