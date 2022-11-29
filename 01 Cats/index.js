@@ -40,6 +40,7 @@ let server = http.createServer((req,res)=>{
       header.status=200;
       header.contentType={"Content-Type":"text/css"};
       res.setHeader('Content-Type', header.contentType['Content-Type']);
+     
       const FAVICON = path1.join(__dirname, pathname)
       fs.createReadStream(FAVICON).pipe(res);
       res.writeHead(header.status, header.contentType); 
