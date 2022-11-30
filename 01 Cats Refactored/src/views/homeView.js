@@ -15,7 +15,7 @@ let renderedCatList=(data)=>{
     let result='';
     data.forEach((cat)=>{
     result+=`<li>
-    <img src=${cat.image} alt="${cat.catName}">
+    <img src="${cat.image}" alt="${cat.catName}">
     <h3>${cat.catName}</h3>
     <p><span>Breed: </span>${cat.breed}</p>
     <p><span>Description: </span>${cat.description}</p>

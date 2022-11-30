@@ -7,7 +7,7 @@ const { addCatView } = require('../views/addCatView');
 const endPoints={
     allCats:path.join(__dirname,'/cats.json'),
     allBreeds:path.join(__dirname,'/breeds.json'),
-    allImages:'/content/images'
+    allImages:path.join('/content/images')
   }
 
 function readAllCats(req,res){
@@ -71,12 +71,12 @@ form.parse(req,(err,fields)=>{
 
 function addNewCat(req,res){
     let form =new IncomingForm();
-    form.uploadDir = req.directoryRoot+endPoints.allImages;
+    form.uploadDir = path.join(req.directoryRoot,endPoints.allImages)
     let imagePath='';
     form.on('file', function(field, file) {
         //rename the incoming file to the file's name
-            fs.rename(file.filepath,form.uploadDir+'/'+file.newFilename.substring(0,6)+'.'+file.originalFilename.split('.')[1],()=>{
-                imagePath=file.filepath;
+            fs.rename(file.filepath,form.uploadDir+'/'+file.newFilename+'.'+file.originalFilename.split('.')[1],()=>{
+                imagePath=path.join(form.uploadDir,'/'+file.newFilename+'.'+file.originalFilename.split('.')[1]);
             })
             
             
