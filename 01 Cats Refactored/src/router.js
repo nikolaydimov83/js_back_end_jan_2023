@@ -16,6 +16,12 @@ function match(req,res){
 let url=new URL(req.url,host)
 console.log(url.host);
 console.log(url.pathname);
+let finalPathname=url.pathname.split('/')[1];
+if (finalPathname==='edit'){
+req.catId=url.pathname.split('/')[2];
+console.log(req.catId);
+url.pathname='/edit';
+}
 
 if(router[url.pathname]){
     if(typeof router[url.pathname][req.method]==='function'){

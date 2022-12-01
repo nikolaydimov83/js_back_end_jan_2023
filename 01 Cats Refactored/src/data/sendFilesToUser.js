@@ -3,7 +3,8 @@ const path = require('path');
 const fileTypeToContentType={
   'css':"text/css",
   'js':"text/javascript",
-  'png':'image/png'
+  'png':'image/png',
+  'jpg':'image/jpeg'
 }
 
 function sendFile(req,res){
