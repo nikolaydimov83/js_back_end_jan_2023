@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "formidable": "^2.1.1",
+    "nodemon": "^2.0.20"
+  },
+  "name": "01-cats-refactored-2nd-time",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
