@@ -3,7 +3,8 @@ const {createReadStream,promises:fs}=require('fs');
 let contentTypes={
     "css":"text/css",
     "jpg":"image/jpeg",
-    "ico":"image/x-icon"
+    "ico":"image/x-icon",
+    "png":"image/png"
 }
 
 function handleFile(req,res){

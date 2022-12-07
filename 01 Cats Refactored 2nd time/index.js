@@ -1,10 +1,12 @@
 const http=require('http');
-const { addNewBreed, addNewCat } = require('./src/data/handleCatsData');
+const { addNewBreed, addNewCat, editCat, deleteCat, search } = require('./src/data/handleCatsData');
 const {match, register}=require('./src/router');
 const { showAddBreed } = require('./src/views/addBreedView');
 const {showAddCat} = require('./src/views/addCatView');
 const { showEditCat } = require('./src/views/editCatView');
-const { showHome } = require('./src/views/home');
+const { showHome } = require('./src/views/homeView');
+const { showShelterCat } = require('./src/views/shelterCatView');
+const { showResults } = require('./src/views/showResultsView');
 
 
 register('/','GET',showHome);
@@ -13,6 +15,10 @@ register('/cats/add-breed','POST',addNewBreed);
 register('/cats/add-cat','GET',showAddCat);
 register('/cats/add-cat','POST',addNewCat);
 register('/edit','GET',showEditCat);
+register('/edit','POST',editCat);
+register('/delete','GET',showShelterCat);
+register('/delete','POST',deleteCat);
+register('/search','POST',showResults);
 
 
 const server=http.createServer((req,res)=>{

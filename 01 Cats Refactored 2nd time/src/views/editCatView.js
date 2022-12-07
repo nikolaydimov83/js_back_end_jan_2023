@@ -23,7 +23,7 @@ let singleBreedTemplate=(breed,cat)=>{
     if(cat.breed===breed){
         return `<option selected="true" value="${breed}">${breed}</option>`
     }
-    return `<option value=${breed}>${breed}</option>`
+    return `<option value="${breed}">${breed}</option>`
 }
 
 let catFormInputsTemplate=(breeds,cat)=>{
@@ -36,7 +36,7 @@ let catFormInputsTemplate=(breeds,cat)=>{
 <label for="image">Image</label>
 <input name="upload" type="file" id="image">
 <label for="group">Breed</label>
-<select name="breed" value=${cat.breed} id="group">
+<select name="breed" value="${cat.breed}" id="group">
     {{breed list}}
 </select>
 <button>Edit Cat</button>

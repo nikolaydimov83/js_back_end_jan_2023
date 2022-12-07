@@ -20,7 +20,7 @@ async function showAddCat(req,res){
 }
 
 let singleBreedTemplate=(breed)=>{
-    return `<option value=${breed}>${breed}</option>`
+    return `<option value="${breed}">${breed}</option>`
 }
 
 module.exports={showAddCat}

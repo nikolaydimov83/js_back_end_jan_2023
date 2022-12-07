@@ -4,14 +4,8 @@ const { errorHandler } = require('../errorHandlers/errorHandler');
 
 
 async function showHome(req,res){
-//let streamOfHtmlFile=createReadStream('./htmlExamples/home/index.html','utf-8');
 let htmlHomeAsString='';
-/*streamOfHtmlFile.on('data',(chunk)=>htmlAsString+=chunk);
-streamOfHtmlFile.on('end',
-async ()=>{
-        let a =await getListInfo();
-        console.log(a.toString());
-    });*/
+
 try {
     htmlHomeAsString=await fs.readFile('./htmlExamples/home/index.html','utf-8');
     let allCatsArray=await getListInfo('cats');
