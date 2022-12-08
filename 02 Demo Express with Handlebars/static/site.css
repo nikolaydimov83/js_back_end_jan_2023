@@ -1,0 +1,21 @@
+body {
+background-color: bisque
+}
+
+#content{
+    margin: auto;
+    width: 600px;
+    background-color: white;
+}
+
+nav ul{
+    list-style: none;
+}
+
+nav ul li{
+    display: inline-block;
+}
+
+nav ul li a{
+    display: inline-block;
+}
