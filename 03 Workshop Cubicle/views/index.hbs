@@ -1,0 +1,23 @@
+
+    <main>
+      <h1>Browser</h1>
+      <form method="post">
+        <input type="text" class="search" name="search" placeholder="Search...">
+        <input type="number" name="from" class="difficulty" placeholder="Difficulty from...">
+        <span>-</span>
+        <input type="number" name="to" class="difficulty" placeholder="Difficulty to...">
+        <input type="submit" value="search">
+      </form>
+
+      {{#if models}}
+      {{#each models}}
+        {{>'modelCard'}}
+      {{/each}}
+      
+      {{else}}
+      <h2>No models found!</h2>
+      
+      {{/if}}
+ 
+    </main>
+  
