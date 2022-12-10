@@ -34,6 +34,9 @@ async function search(searchInfo){
     let result={}
     Object.entries(searchInfo).forEach((entry)=>{
         if (entry[1]){
+            if(entry[0]!=='search'&&isNaN(Number(entry[1]))){
+                throw new Error('Minimum and maximum difficulty should be a number!')
+            }
             validSearchParams.push(entry);
             //result[entry[0]]=[];
         }
@@ -41,6 +44,18 @@ async function search(searchInfo){
 if (validSearchParams.length===0){
     return
 }
+
+/*if (validSearchParams[0]['to']){
+    if (Number(validSearchParams['to'])===NaN){
+        throw new Error ('Wrong value in maximum difficulty')
+    }
+}
+
+if (validSearchParams[0]['from']){
+    if (Number(validSearchParams['from'])===NaN){
+        throw new Error ('Wrong value in minimum difficulty')
+    }
+}*/
 
 validSearchParams.forEach((param)=>{
     let result1 = models.filter((model)=>{
