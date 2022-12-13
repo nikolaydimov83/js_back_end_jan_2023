@@ -4,6 +4,9 @@ const connectionStringMongoose='mongodb://localhost:27017/testdb2';
 
 const Person=require('./models/Person');
 let mongoose=require('mongoose');
+const Article = require('./models/Article');
+const Comment = require('./models/Comment');
+
 
 
 
@@ -34,15 +37,32 @@ async function startMongoose(){
 
    
 
-   let person=new Person({firstName:'Mer',lastName:'Merova', age:28});
+   /*let person=new Person({firstName:'Mer',lastName:'Merova', age:28,nationality:'BG'});
    console.log(person.sayHi());
    await person.save();
    let data=await Person.find({});
    console.log(data[0].sayHi());
    console.log(data[0].fullName);
    console.log(data[0].fullName='Maria Dimova');
+   //await data[0].save();*/
 
-    
+   let article=new Article({
+    author:'Peter Jackson',
+    title:'First Article',
+    content:'Lorem ipsum'
+   });
+
+let comment = new Comment({
+    author:'Peter Jackson',
+    content:'Nice article!'
+})
+  article.comments.push(comment);
+  article.save();
+  comment.save();
+
+  let article1=await Article.findById(article._id).populate('comments');
+  console.log(article1);
+  await article1.save();
 }
 
 startMongoose();
