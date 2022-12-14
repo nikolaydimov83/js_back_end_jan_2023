@@ -1,4 +1,4 @@
-const { readAllModels, readModelById } = require('../models/handleModelsData');
+const { readAllModels, readModelById } = require('../services/handleModelsData');
 
 const router=require('express').Router();
 

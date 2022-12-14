@@ -1,4 +1,4 @@
-const { addModel } = require('../models/handleModelsData');
+const { addModel } = require('../services/handleModelsData');
 
 const router = require('express').Router();
 
@@ -6,7 +6,7 @@ router.get('/',(req,res)=>{
     res.render('create');
 });
 
-router.post('/:search',async (req,res)=>{
+router.post('/',async (req,res)=>{
     let body=req.body;
     try{
         await addModel(body)
