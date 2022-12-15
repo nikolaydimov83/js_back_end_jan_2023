@@ -26,7 +26,7 @@ async function readModelById(id){
     
     /*let models= JSON.parse(await fs.readFile(path.join(root.endPoints.root,'/config/database.json'),'utf8'));
     let model=models.find((model)=>model.id===id);*/
-    let model=await Cube.findById(id)
+    let model=await Cube.findById(id).populate('accesoaries').lean()
     return model
 }
 
