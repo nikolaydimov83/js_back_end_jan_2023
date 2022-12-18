@@ -36,7 +36,7 @@ app.get('/',(req,res)=>{
         <input type="text" name="username">
         <input type="password" name="password">
         <input type="submit" value="Log in">
-        </form>`)
+        </form>`);
     })
 
     app.post('/login',(req,res)=>{
