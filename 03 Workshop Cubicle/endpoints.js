@@ -1,4 +1,8 @@
-let endPoints={root:__dirname}
+let endPoints={
+    root:__dirname
+
+}
+
 module.exports={
 endPoints
 }
