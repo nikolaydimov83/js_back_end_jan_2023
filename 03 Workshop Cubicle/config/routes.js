@@ -6,6 +6,7 @@ const errorController=require('../controllers/errorController');
 const attachAccesoaryController=require('../controllers/attachAccesoryController');
 const registerController=require('../controllers/registerController');
 const loginController=require('../controllers/loginController');
+const logoutController=require('../controllers/logoutController');
 module.exports = (app) => {
     app.use('/',homeController);
     app.use('/about',aboutController);
@@ -15,6 +16,7 @@ module.exports = (app) => {
     app.use('/attach',attachAccesoaryController);
     app.use('/register',registerController);
     app.use('/login',loginController);
+    app.use('/logout',logoutController);
     app.use('*',errorController);
     
 

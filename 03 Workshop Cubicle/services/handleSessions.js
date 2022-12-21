@@ -36,4 +36,4 @@ async function createToken(username,hashedPass){
     return token
     
 }
-module.exports={adresses,createToken}
+module.exports={adresses,createToken,checkUserHasValidToken}
