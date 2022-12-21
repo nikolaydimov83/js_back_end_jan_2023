@@ -1,11 +1,11 @@
 const bcrypt=require('bcrypt')
 
-async function hash(password){
+async function hashPass(password){
     return bcrypt.hash(password,10)
 }
 
-async function compare(password,hashedPass){
+async function comparePass(password,hashedPass){
     return bcrypt.compare(password,hashedPass)
 }
 
-module.exports={hash,compare}
+module.exports={hashPass,comparePass}
