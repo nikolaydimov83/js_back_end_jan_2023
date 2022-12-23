@@ -7,6 +7,7 @@ let finalPath=path.join(root.endPoints.root,'/config/database.json')
 console.log(finalPath);
 
 async function writeModelInDb(cube){
+    
     await Cube.create(/*{
         name:'New Cube',
         description:'Try out the best Rubik Cube',
@@ -26,7 +27,8 @@ async function readModelById(id){
     
     /*let models= JSON.parse(await fs.readFile(path.join(root.endPoints.root,'/config/database.json'),'utf8'));
     let model=models.find((model)=>model.id===id);*/
-    let model=await Cube.findById(id).populate('accesoaries').lean()
+    let model=await Cube.findById(id).populate('accesoaries').lean();
+    console.log(model);
     return model
 }
 

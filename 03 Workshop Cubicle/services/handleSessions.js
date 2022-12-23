@@ -29,6 +29,17 @@ try {
 
 }
 
+async function findUserByToken(token){
+    try {
+        const decodedToken = jwt.verify(token,secret);
+        let userId=User.findOne({username:decodedToken.username}).lean();
+        return userId
+    } catch (error) {
+        throw new Error(error.message)
+    }
+
+}
+
 async function createToken(username,hashedPass){
     const payloads = { username, hashedPass};
     const options = { expiresIn: '2d'};
@@ -36,4 +47,4 @@ async function createToken(username,hashedPass){
     return token
     
 }
-module.exports={adresses,createToken,checkUserHasValidToken}
+module.exports={adresses,createToken,checkUserHasValidToken,findUserByToken}

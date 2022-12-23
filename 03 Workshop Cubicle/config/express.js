@@ -10,11 +10,14 @@ const { adresses, checkUserHasValidToken } = require('../services/handleSessions
 
 module.exports = (app) => {
 app.use(cookieParser());
+
 app.use(async (req,res,next)=>{
     
    res.locals.isLogged = await checkUserHasValidToken(req,res);
     next();
 });
+
+
 
 
 const hbr=handlebars.create({

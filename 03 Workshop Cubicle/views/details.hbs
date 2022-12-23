@@ -6,7 +6,10 @@
         <p><span>Description:</span> {{model.description}}</p>
         <p><span>Difficulty level:</span> {{model.diffLevel}}</p>
         <a class="btn" href="/">Back</a>
+        {{#if isLogged}}
         <a class="btn" href="/attach/accesory/{{model._id}}">Attach Accesory</a>
+        {{/if}}
+        
       </div>
       <h2>Accessories</h2>
       <div class="accessories">
