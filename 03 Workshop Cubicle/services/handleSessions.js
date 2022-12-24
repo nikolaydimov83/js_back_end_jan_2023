@@ -32,8 +32,8 @@ try {
 async function findUserByToken(token){
     try {
         const decodedToken = jwt.verify(token,secret);
-        let userId=User.findOne({username:decodedToken.username}).lean();
-        return userId
+        let user=User.findOne({username:decodedToken.username}).lean();
+        return user
     } catch (error) {
         throw new Error(error.message)
     }

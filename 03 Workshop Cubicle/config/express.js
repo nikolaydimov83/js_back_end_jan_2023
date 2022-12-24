@@ -1,7 +1,8 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 const cookieParser = require('cookie-parser');
-const { adresses, checkUserHasValidToken } = require('../services/handleSessions');
+const { adresses, checkUserHasValidToken, findUserByToken } = require('../services/handleSessions');
+const { readModelById } = require('../services/handleModelsData');
 
 
 
@@ -17,11 +18,39 @@ app.use(async (req,res,next)=>{
     next();
 });
 
+app.use(async (req,res,next)=>{
+    if (res.locals.isLogged){
+            let user=await findUserByToken(req.cookies.token);
+    let userId=user._id.toString();
+    
+    let productId=req.originalUrl.split('/')[2]
+    try {
+        if (productId){
+            let cube=await readModelById(productId);
+            let indexOfCubeOwner=cube.owner.findIndex((owner)=>owner._id.toString()===userId)
+            if (indexOfCubeOwner>-1){
+                res.locals.isOwner=true
+            }
 
+        }
+    } catch (error) {
+        console.log(error.message)
+    }
+    }
+
+     next();
+ });
 
 
 const hbr=handlebars.create({
-    extname:'.hbs'
+    extname:'.hbs',
+    helpers:{optionSelected:function(valueOption, diffLevel){
+        if (valueOption===diffLevel){
+            return 'selected'
+        }else{
+            return ''
+        }
+    }}
 });
 
 app.engine('hbs',hbr.engine);

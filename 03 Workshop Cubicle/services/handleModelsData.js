@@ -28,7 +28,7 @@ async function readModelById(id){
     /*let models= JSON.parse(await fs.readFile(path.join(root.endPoints.root,'/config/database.json'),'utf8'));
     let model=models.find((model)=>model.id===id);*/
     let model=await Cube.findById(id).populate('accesoaries').lean();
-    console.log(model);
+    //console.log(model);
     return model
 }
 
@@ -40,6 +40,15 @@ async function addModel(model){
     await fs.writeFile(path.join(root.endPoints.root,'/config/database.json'),JSON.stringify(models,null,2))*/
 
 
+}
+
+async function deleteModelById(id){
+    
+    /*let models= JSON.parse(await fs.readFile(path.join(root.endPoints.root,'/config/database.json'),'utf8'));
+    let model=models.find((model)=>model.id===id);*/
+    let model=await Cube.findByIdAndDelete(id);
+    //console.log(model);
+    return model
 }
 
 async function search(searchInfo){
@@ -63,4 +72,4 @@ async function search(searchInfo){
 return models
 
 }
-module.exports={readAllModels,readModelById,addModel,search, writeModelInDb}
+module.exports={readAllModels,readModelById,addModel,search, writeModelInDb,deleteModelById}
