@@ -50,7 +50,9 @@ async function deleteModelById(id){
     //console.log(model);
     return model
 }
-
+async function replaceById(id,model){
+    await Cube.replaceOne({_id:id},model)
+}
 async function search(searchInfo){
     if (!searchInfo.from){
         searchInfo.from=0
@@ -72,4 +74,4 @@ async function search(searchInfo){
 return models
 
 }
-module.exports={readAllModels,readModelById,addModel,search, writeModelInDb,deleteModelById}
+module.exports={readAllModels,readModelById,addModel,search, writeModelInDb,deleteModelById,replaceById}
