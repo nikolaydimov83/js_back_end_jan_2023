@@ -6,7 +6,7 @@ const router=require('express').Router();
 
 router.get('/:id',async (req,res)=>{
     try {
-        let id=req.params.id
+        let id=req.params.id;
         let model=await readModelById(id);
        
         res.render('edit',{model,acc:model.accesoaries});
