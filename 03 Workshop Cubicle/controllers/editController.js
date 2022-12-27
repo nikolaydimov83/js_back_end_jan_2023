@@ -1,5 +1,5 @@
 const { getAccesoriesById } = require('../services/handleAccessoariesData');
-const { readAllModels, readModelById, deleteModelById, replaceById } = require('../services/handleModelsData');
+const { readModelById, deleteModelById, replaceById } = require('../services/handleModelsData');
 
 const router=require('express').Router();
 
