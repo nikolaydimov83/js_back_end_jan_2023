@@ -18,8 +18,8 @@ router.get('/:id',async (req,res)=>{
 
 router.post('/:id',async (req,res)=>{
     try {
-        let id=req.params.id
-        let body=req.body
+        let id=req.params.id;
+        let body=req.body;
         await replaceById(id,body);
         res.redirect(301,'/');
     } catch (error) {
