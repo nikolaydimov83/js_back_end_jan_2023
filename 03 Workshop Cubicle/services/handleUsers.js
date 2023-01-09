@@ -23,8 +23,6 @@ return await createToken(userData.username,hashedPass);
 async function loginUser(userData){
 
     
-  
-    
     let user=await User.findOne({username:userData.username});
     let result=await bcrypt.compare(userData.password,user.hashedPass);
     if(!user||!result){
