@@ -204,7 +204,9 @@ input[type=submit]:hover {
     background-color: #718F94;
     cursor: pointer;
 }
-
+input.error-field{
+    border:1px solid red
+}
 div.form {
     border-radius: 5px;
     padding: 20px;
@@ -281,3 +283,4 @@ footer {
         opacity: 0;
     }
 }
+

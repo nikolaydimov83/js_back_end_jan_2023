@@ -28,7 +28,7 @@ async function getEligibleAccesoariesById(cubeId){
     if (cube.accesoaries.length>0){
         cubeAccesoriesIds=cube.accesoaries.map((accesory)=>accesory._id)
     }else{
-        cubeAccesoriesIds=[''];
+        cubeAccesoriesIds=[];
     }
     let eligibleAccsories=await Accesoary.find({ _id : { $nin: cubeAccesoriesIds }}).select('_id name');
     return eligibleAccsories

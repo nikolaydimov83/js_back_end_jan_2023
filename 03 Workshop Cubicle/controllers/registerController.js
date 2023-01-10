@@ -12,10 +12,8 @@ router.get('/',(req,res)=>{
 
 router.post('/',
 body('username')
-    .isLength({min:6})
-    .withMessage('Username shoud be at least 6 chars long')
-    .isAlphanumeric()
-    .withMessage('Only latin letters and numbers are allowed for password')
+    //.isAlphanumeric()
+    //.withMessage('Only latin letters and numbers are allowed for password')
     .custom(async(value)=>{
         if (await User.findOne({username:value})){
             throw new Error('Username already exists!')
@@ -43,6 +41,7 @@ async (req,res)=>{
         res.redirect(301,'/');
     }catch(err){
         let fields={}
+        let username=req.body.username
         err.forEach(e => {
             if(!fields[e.param]){
                 fields[e.param]={msgs:[],value:e.value}
@@ -50,7 +49,7 @@ async (req,res)=>{
             fields[e.param]['msgs'].push(e.msg)
             //fields[e.param]['values'].push(e.value)
         });
-        res.render('register',{fields})
+        res.render('register',{fields,username})
     }
 
 });

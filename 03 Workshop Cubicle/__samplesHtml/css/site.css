@@ -259,6 +259,10 @@ footer {
     font-size: 20px;
 }
 
+.error-field {
+    border: 1px solid red
+}
+
 /*Animations & Transitions
 */
 
