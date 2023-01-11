@@ -21,8 +21,10 @@ body('username')
     }),
 body('password')
 .trim()
-    .isLength({min:6})
-    .withMessage('Password should be at least 6 chars long'),
+    .isLength({min:8})
+    .withMessage('Password should be at least 6 chars long')
+    .isAlphanumeric()
+    .withMessage('Only latin letters and numbers are allowed for password'),
 body('repeatPassword')
     .trim()
     .custom((value,{req})=>{
@@ -40,15 +42,8 @@ async (req,res)=>{
         res.cookie('token',token);
         res.redirect(301,'/');
     }catch(err){
-        let fields={}
-        let username=req.body.username
-        err.forEach(e => {
-            if(!fields[e.param]){
-                fields[e.param]={msgs:[],value:e.value}
-            }
-            fields[e.param]['msgs'].push(e.msg)
-            //fields[e.param]['values'].push(e.value)
-        });
+        let { fields, username } = extractErrorFieldsAndUsername(req, err);
+
         res.render('register',{fields,username})
     }
 
@@ -56,3 +51,5 @@ async (req,res)=>{
 
 
 module.exports=router
+
+

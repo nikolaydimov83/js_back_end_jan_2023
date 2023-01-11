@@ -1,12 +1,28 @@
         <main>
             <h1>Login Form</h1>
+                        {{#if fields}}
+            <div>
+                    {{#each fields.username.msgs}}
+                        <span class="error">{{this}}</span>
+                    {{/each}}
+
+                    {{#each fields.password.msgs}}
+                         <span class="error">{{this}}</span>
+                    {{/each}}
+
+                    {{#each fields.repeatPassword.msgs}}
+                         <span class="error">{{this}}</span>
+                    {{/each}}
+                    
+            </div>    
+            {{/if}}
             <div class="form">
                 <form method="POST">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username">
+                   <input type="text" id="username" name="username" {{#if fields}}value="{{username}}"{{/if}} {{#if fields.username}} class='error-field'{{/if}}>
 
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password">
+                    <input type="password" id="password" name="password" {{#if fields.password}} class='error-field'{{/if}}>
                     <input type="submit" value="Login">
                 </form>
             </div>

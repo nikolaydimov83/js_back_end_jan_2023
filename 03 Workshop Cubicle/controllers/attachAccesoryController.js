@@ -1,6 +1,7 @@
 const { getAllAccesories, getEligibleAccesoariesById, attachAccesoaryToCube } = require('../services/handleAccessoariesData');
 const { readModelById } = require('../services/handleModelsData');
 
+
 const router=require('express').Router();
 
 router.get('/accesory/:id',async(req,res)=>{
@@ -20,7 +21,8 @@ router.post('/accesory/:id',async(req,res)=>{
         await attachAccesoaryToCube(id, body);
     res.redirect(301,'/');
     } catch (error) {
-        res.send(error.message);
+        let { fields, username } = extractErrorFieldsAndUsername(req,err)
+        res.render('login',{fields,username})
     }
   
     

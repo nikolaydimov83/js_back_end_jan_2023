@@ -1,5 +1,5 @@
 const {model,Schema,Types}=require('mongoose');
-let usernameRegex=/^[A-Za-z0-9 ]$/
+let usernameRegex=/^[A-Za-z0-9 ]+$/
 const userSchema=new Schema(
     {
       username:{

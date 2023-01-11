@@ -19,7 +19,7 @@
             <div class="form">
                 <form action="#" method="POST">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" {{#if fields}}value={{username}}{{/if}} {{#if fields.username}} class='error-field'{{/if}}>
+                    <input type="text" id="username" name="username" {{#if fields}}value="{{username}}"{{/if}} {{#if fields.username}} class='error-field'{{/if}}>
 
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" {{#if fields.password}} class='error-field'{{/if}}>

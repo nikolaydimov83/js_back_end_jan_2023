@@ -1,14 +1,30 @@
 
     <main>
       <h1>Create</h1>
+                  {{#if fields}}
+            <div>
+                    {{#each fields.name.msgs}}
+                        <span class="error">{{this}}</span>
+                    {{/each}}
+
+                    {{#each fields.description.msgs}}
+                         <span class="error">{{this}}</span>
+                    {{/each}}
+
+                    {{#each fields.imageUrl.msgs}}
+                         <span class="error">{{this}}</span>
+                    {{/each}}
+                    
+            </div>    
+            {{/if}}
       <div class="form">
         <form method="post">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name">
+          <input type="text" id="name" name="name" {{#if fields}} value="{{body.name}}"{{/if}} {{#if fields.name}} class='error-field'{{/if}}>
           <label for="name">Description</label>
-          <textarea id="name" name="description"></textarea>
+          <textarea id="name" name="description" {{#if fields}} {{/if}} {{#if fields.description}} class='error-field'{{/if}}>{{#if fields}}{{body.description}}{{/if}}</textarea>
           <label for="image">ImageUrl</label>
-          <input type="text" id="image" name="imageUrl">
+          <input type="text" id="image" name="imageUrl" {{#if fields}} value="{{body.imageUrl}}"{{/if}} {{#if fields.imageUrl}} class='error-field'{{/if}}>>
           <label for="difficulty">Difficulty</label>
           <select id="difficulty" name="diffLevel">
             <option value="1">1 - Very Easy</option>

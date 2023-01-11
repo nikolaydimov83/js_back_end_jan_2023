@@ -1,9 +1,32 @@
 const {Schema, model,Types}=require('mongoose');
-
+let regexURL=/^http[s]*:\/\/[a-zA-Z0-9]*/;
+let usernameRegex=/^[A-Za-z0-9 ]+$/;
 let cubeSchema=new Schema({
-    name:{type:String, required:true},
-    description:{type:String, required:true,maxLength:600},
-    imageUrl:{type:String, required:true, match:/^http[s]*:\/\/[a-zA-Z0-9]*/},
+    name:{
+        type:String, 
+        min:5, 
+        validate:{
+        validator:(value)=>{
+            let result = usernameRegex.test(value)
+            return result },
+        message:(prop)=>`${prop.value} is not a valid Accessory name. Only latin letters and spaces are accepted!`
+    }},
+    description:{
+        type:String, 
+        required:true,
+        min:20,
+        validate:{
+            validator:(value)=>{
+                let result = usernameRegex.test(value)
+                return result },
+            message:(prop)=>`${prop.value} is not a valid Accessory description. Only latin letters and spaces are accepted!`
+        }},
+    imageUrl:{type:String, required:true, validate:{
+        validator:(value)=>{
+            return regexURL.test(value);
+        },
+        message:(props)=>{return `${props.value} is not a valid image URL` }
+    }},
     diffLevel:{type:Number, required:true, min:1, max:6},
     accesoaries:{type:[Types.ObjectId],default:[],ref:'Accesoary'},
     owner:{type:[Types.ObjectId],required:true,ref:'User'}

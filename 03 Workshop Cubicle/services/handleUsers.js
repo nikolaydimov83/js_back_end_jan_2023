@@ -26,7 +26,7 @@ async function loginUser(userData){
     let user=await User.findOne({username:userData.username});
     let result=await bcrypt.compare(userData.password,user.hashedPass);
     if(!user||!result){
-        throw new Error('Invalid username or password!')
+        throw {message:'Invalid username or password!',fields:['username','password']}
     }
     
     
