@@ -1,5 +1,15 @@
-<h1>Home</h1>
+        <section id="viewCatalog" class="background-img">
+           <div class="added-hotels">
+            {{#if hotels}}
+            {{#each hotels}}
+            {{>'hotelCard'}}
 
-{{#if user}}
-<p>Hello, {{user}}</p>
-{{/if}}
+            {{/each}}
+            </div>
+            {{else}}
+            <div class="guest">
+                There are no Hotels found...
+            </div>
+            {{/if}}
+            
+        </section>

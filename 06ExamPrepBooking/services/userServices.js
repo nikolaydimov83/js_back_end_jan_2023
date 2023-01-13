@@ -5,11 +5,18 @@ const bcrypt=require('bcrypt');
 const JWT_SECRET='jcdsahjcvhsad3242sajchd';
 
 async function register(userData){
+   
     const username=userData.username;
     const password=userData.password;
+    const email=userData.email;
     const userExists=await User.findOne({username}).collation({locale:'en',strength:2});
+    const emailExists=await User.findOne({email}).collation({locale:'en',strength:2});
     if (userExists){
         throw new Error('User with same username already registered!');
+    }
+
+    if (emailExists){
+        throw new Error('User with same email already registered!');
     }
 
     let hashedPass=await bcrypt.hash(password,10);
@@ -26,8 +33,8 @@ async function register(userData){
 }
 
 async function login(userData){
-
-    let userFromDB=await User.findOne({username:userData.username}).lean();
+//To Do check if user checks with email or username
+    let userFromDB=await User.findOne({email:userData.username}).lean();
     let userCheckResult=await bcrypt.compare(userData.password,userFromDB.hashedPass);
     
     if (!userFromDB||!userCheckResult){

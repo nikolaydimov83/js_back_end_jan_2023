@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
 
-//To DO change the connection string with the real database
+//To DO change the connection string with the real connction string
+
 const CONNECTION_STRING='mongodb://localhost:27017/scafold'
 
 module.exports=async (app)=>{

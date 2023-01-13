@@ -1,3 +1,4 @@
+
 const { register, login } = require('../services/userServices');
 const { parseError } = require('../util/utils');
 
@@ -11,6 +12,8 @@ authController.get('/register',(req,res)=>{
 })
 
 authController.get('/login',(req,res)=>{
+
+
     //TO DO replace with actual view by assignment
     res.render('login',{
         title:'Login page'
@@ -25,19 +28,21 @@ authController.get('/logout',(req,res)=>{
 authController.post('/register',async (req,res)=>{
 
     try {
-        if(req.body.password==''||req.body.username==''){
+        if(req.body.password==''||req.body.username==''||req.body.email==''){
             throw new Error('All fields are required!')
         }
         if(req.body.password!=req.body.rePassword){
             throw new Error('Passwords do not match!')
         }
+        //To check if session is created during the assignment
         const token=await register(req.body);
         res.cookie('token',token);
+        //TO DO check where user is redirected
         res.redirect('/');
     } catch (error) {
         const errors=parseError(error);
         //TO DO add error display to actual template
-        //TO DO add error parser
+  
         
         res.render('register',{
             title:'Register page',
@@ -58,17 +63,22 @@ authController.post('/login',async (req,res)=>{
 
         const token=await login(req.body);
         res.cookie('token',token);
+        //TO DO check where user is redirected
+
         res.redirect('/');
+
+
     } catch (error) {
         const errors=parseError(error);
+
         //TO DO add error display to actual template
-        //TO DO add error parser
+    
         
-        res.render('register',{
-            title:'Register page',
+        res.render('login',{
+            title:'Login page',
             errors,
             username:req.body.username,
-            email:req.body.email
+
         });
     }
 
