@@ -11,6 +11,7 @@ async function register(userData){
     const email=userData.email;
     const userExists=await User.findOne({username}).collation({locale:'en',strength:2});
     const emailExists=await User.findOne({email}).collation({locale:'en',strength:2});
+    
     if (userExists){
         throw new Error('User with same username already registered!');
     }

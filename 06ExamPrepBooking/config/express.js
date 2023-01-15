@@ -3,7 +3,7 @@ const handlebars=require('express-handlebars');
 const cookieParser=require('cookie-parser');
 const tokenValidity=require('../middlewares/tokenValidity');
 const trimBody=require('../middlewares/trimBody');
-const hasUser = require('../middlewares/guards');
+const guards = require('../middlewares/guards');
 
 module.exports=(app)=>{
 const hbs =handlebars.create({
@@ -17,5 +17,5 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(tokenValidity());
 app.use(trimBody());
-app.use(hasUser());
+app.use(guards());
 }

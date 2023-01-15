@@ -1,5 +1,6 @@
 const { getAllHotels } = require('../services/hotelServices');
 
+
 const homeController=require('express').Router();
 // TO DO replace the home template with the one by assignemnt
 homeController.get('/',async (req,res)=>{

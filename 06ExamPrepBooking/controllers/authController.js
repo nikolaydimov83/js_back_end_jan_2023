@@ -1,6 +1,7 @@
 
 const { register, login } = require('../services/userServices');
 const { parseError } = require('../util/utils');
+const {body,validationResult}=require('express-validator');
 
 const authController=require('express').Router();
 
@@ -25,9 +26,32 @@ authController.get('/logout',(req,res)=>{
     res.redirect('/');
 })
 
-authController.post('/register',async (req,res)=>{
+authController.post('/register',
+//To do check all validations
+body('username')
+    .notEmpty().withMessage('Username is required field'),
+body('email')
+    .custom(async(value)=>{
+        let emailRegex=/^[A-Za-z0-9 ]+@[A-Za-z0-9 ]+.[A-Za-z0-9 ]+$/
+        if (!emailRegex.test(value)){
+            throw new Error(`${value} is not a valid email. Only latin letters and numbers are accepted!`)
+        }
+    }).withMessage('You have enetered invalid mail adress!'),
+body('password').isLength({min:5}).withMessage('Invalid password must be at least 5 characters long!')
+//.isAlphanumeric()
+//.withMessage('Only latin letters and numbers are allowed for password')
+/*.custom(async(value)=>{
+    let usernameRegex=/^[A-Za-z0-9 ]+$/
+    if (!usernameRegex.test(value)){
+        throw new Error(`${value} is not a valid user name. Only latin letters and spaces are accepted!`)
+    }
+})*/,async (req,res)=>{
 
     try {
+        let errors=validationResult(req).errors
+        if (errors.length>0){
+            throw errors
+        }
         if(req.body.password==''||req.body.username==''||req.body.email==''){
             throw new Error('All fields are required!')
         }
