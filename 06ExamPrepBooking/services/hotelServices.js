@@ -7,7 +7,7 @@ async function getAllHotels(){
         hotel.currentFreeRooms=Number(hotel.freeRooms)-hotel.bookedUsers.length
         
     });
-    hotels.sort((h1,h2)=>{return h1.currentFreeRooms-h2.currentFreeRooms})
+    hotels.sort((h1,h2)=>{return h2.currentFreeRooms-h1.currentFreeRooms})
 
     return hotels
 
@@ -18,25 +18,34 @@ async function createHotel(hotel){
 }
 
 async function readHotelById(id){
-    
+    try {
+        let hotel=await Hotel.findById(id).populate('owner').lean();
+        if(hotel){
+            hotel.currentFreeRooms=Number(hotel.freeRooms)-hotel.bookedUsers.length
+        }
+        return hotel 
+    } catch (error) {
+        if (error.kind=='ObjectId'){
+            return null
+        }else throw error
+    }
 
-    let hotel=await Hotel.findById(id).populate('owner').populate('bookedUsers').lean();
-    //console.log(model);
-    return hotel
+
+    
+   
 }
 
 
 
-async function deleteModelById(id){
+async function deleteHotelById(id){
     
-    /*let models= JSON.parse(await fs.readFile(path.join(root.endPoints.root,'/config/database.json'),'utf8'));
-    let model=models.find((model)=>model.id===id);*/
-    let model=await Cube.findByIdAndDelete(id);
-    //console.log(model);
+    
+    let model=await Hotel.findByIdAndDelete(id);
+    
     return model
 }
 async function replaceHotelById(req,hotel){
     await Hotel.replaceOne({_id:req.params.id},hotel)
 }
 
-module.exports={getAllHotels,createHotel,readHotelById,replaceHotelById}
+module.exports={getAllHotels,createHotel,readHotelById,replaceHotelById,deleteHotelById}
