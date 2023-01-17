@@ -2,6 +2,7 @@ const User=require('../models/User');
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcrypt');
 
+
 const JWT_SECRET='jcdsahjcvhsad3242sajchd';
 
 async function register(userData){
@@ -76,4 +77,20 @@ async function verifyToken(req,res){
 
 }
 
-module.exports={login,register,verifyToken};
+async function addBookingToUser(req,hotel){
+    let user=await User.findById(req.userData._id);
+    user.bookedHotels.push(hotel._id);
+    await User.replaceOne({_id:req.userData._id},user);
+}
+
+async function addHotelToUser(req,hotel){
+    let user=await User.findById(req.userData._id);
+    user.offeredHotels.push(hotel._id);
+    await User.replaceOne({_id:req.userData._id},user);
+}
+
+async function findUserById(id){
+    return await User.findById(id).populate('bookedHotels').lean();
+}
+
+module.exports={login,register,verifyToken,addBookingToUser,addHotelToUser,findUserById};

@@ -14,7 +14,8 @@ async function getAllHotels(){
 }
 
 async function createHotel(hotel){
-    await Hotel.create(hotel);
+    let result=await Hotel.create(hotel);
+    return result
 }
 
 async function readHotelById(id){
