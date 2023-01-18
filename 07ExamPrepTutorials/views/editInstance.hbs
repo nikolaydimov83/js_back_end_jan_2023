@@ -1,0 +1,28 @@
+       <main>
+            <form class="text-center border border-light p-5" method="POST">
+                <h1>Edit Course</h1>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" placeholder="Course name" value ="{{body.title}}" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" placeholder="Description" name="description">{{body.description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image url</label>
+                    <input type="text" class="form-control" placeholder="Image Url" value ="{{body.imageUrl}}" name="imageUrl">
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <input type="text" class="form-control" placeholder="4 weeks" value ="{{body.duration}}" name="duration">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+        </main>
+
+
+
+
+           
