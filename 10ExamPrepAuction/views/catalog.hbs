@@ -1,0 +1,27 @@
+<section id="catalog-section" class="spaced">
+
+    <h1 class="item">Auctions</h1>
+
+    <!-- List of available auctions -->
+     {{#if instances}}
+        <ul class="catalog cards">
+            {{#each instances}}
+                {{>'auctionOffer'}}
+            {{/each}}
+            
+        </ul>
+    {{else}}
+    <!-- If there are no auctions to display -->
+    
+    <div class="item pad-large align-center">
+        <p>Nothing has been listed yet. Be the first!</p>
+        <div>
+            {{#if isLogged}}
+            <a class="action" href="/create">Publish Auction</a>
+            {{else}}
+            <a class="action" href="/auth/login">Publish Auction</a>
+            {{/if}}
+        </div>
+    </div>
+    {{/if}}
+</section>
