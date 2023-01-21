@@ -12,9 +12,11 @@ module.exports=()=>async (req,res,next)=>{
     //Checks whether user has logged in
     if(req.userData!='No token'&&req.userData!='Invalid token'){
         res.locals.isLogged=true;
-        //searches for item ID in the request. Might find вложен път, not id
+        
+        //searches for instance ID in the request. Might find вложен път, not id
         const itemId=req.url.split('/')[2];
         let instance=await getById(itemId);
+        
         //Depending on whether the instance and the user owners are the same sets isOwner global variable
         if (instance){
             if ((req.userData._id.toString()!=instance.owner._id.toString())){
