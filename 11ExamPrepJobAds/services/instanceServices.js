@@ -33,7 +33,7 @@ async function getFirstElementstAll(numberOfElements,status){
     }else{
         let instances=await Instance.find({status:status}).populate('enrolledUsers').populate('owner').lean();
         decorateArrayofInstances(instances);
-        instances=instances.sort((a,b)=>  new Date(b.createdAt) - new Date(a.createdAt));
+        instances=instances.sort((a,b)=>  new Date(a.createdAt) - new Date(b.createdAt));
         let result=[]
         for (let index = 0; index < numberOfElements; index++) {
             const element = instances[index];
@@ -98,7 +98,10 @@ async function closeById(id){
 }
 
 async function replaceById(req,instance){
-    await Instance.replaceOne({_id:req.params.id},instance)
+    let dbInstance=await Instance.findById(req.params.id);
+    Object.entries(instance).forEach((pair)=>dbInstance[pair[0]]=pair[1])
+    await dbInstance.save()
+  
 }
 
 function decorateArrayofInstances(instances){
@@ -114,10 +117,11 @@ function decorateArrayofInstances(instances){
 
 function decorateSingleInstance(instance){
     if (instance){
-        instance.lastEnrolled=instance.enrolledUsers[instance.enrolledUsers.length-1];
+        instance.lastEnrolledUser=instance.enrolledUsers[instance.enrolledUsers.length-1];
+        instance.numberOfEnrolledUsers=instance.enrolledUsers.length;
     }
     
     
 }
 
-module.exports={getAll,create,getById,replaceById,deleteById,getAllClosed,closeById,getFirstElementstAll}
+module.exports={getAll,create,getById,replaceById,deleteById,closeById,getFirstElementstAll}

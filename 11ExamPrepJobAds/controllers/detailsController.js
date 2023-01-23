@@ -1,4 +1,5 @@
 const { getById } = require('../services/instanceServices');
+const { checkUserEnrolled } = require('../util/utils');
 
 
 const detailsController=require('express').Router();
@@ -8,13 +9,9 @@ detailsController.get('/:id',async (req,res)=>{
     let instance=await getById(id);
     if (instance){
         instance.hasEnrolled=false
-        let userEnrolled=0;
+        let userEnrolled=false;
         if (req.userData!=='No token'&&req.userData!=='Invalid token'){
-            if (instance.enrolledUsers.length>0){
-                if(instance.enrolledUsers[instance.enrolledUsers.length-1].toString()===req.userData._id.toString()){
-                    userEnrolled=1;
-                }
-            }
+            userEnrolled = checkUserEnrolled(instance,req);
 
         }
 

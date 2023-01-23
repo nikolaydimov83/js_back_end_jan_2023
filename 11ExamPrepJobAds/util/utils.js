@@ -9,6 +9,16 @@ return Object.values(error.errors).map((e)=>e.message);
 }
 }
 
+function checkUserEnrolled(instance,req) {
+    let userHasEnrolled=false
+    if (instance.enrolledUsers.length > 0) {
+        if (instance.enrolledUsers.find((user) => user._id.toString() === req.userData._id.toString())) {
+            userHasEnrolled = true;
+        }
+    }
+    return userHasEnrolled;
+}
+
 function renameBodyProperties(req) {
     //Array of arrays for properties to remove. Each array consists of 
     //roperty name from form as first parameter, property name of Shema as second
@@ -22,6 +32,6 @@ function renameBodyProperties(req) {
     return instance;
 }
 
-module.exports={parseError,renameBodyProperties}
+module.exports={parseError,renameBodyProperties,checkUserEnrolled}
 
 

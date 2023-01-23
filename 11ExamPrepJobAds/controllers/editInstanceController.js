@@ -28,12 +28,6 @@ editInstanceController.get('/:id',async (req,res)=>{
 
 editInstanceController.post('/:id',
 
-body('title').isLength({min:4}).withMessage('Invalid title length must be at least 4 characters'),
-
-/*body('imageUrl').isURL({ protocols: ['http','https']}).withMessage('You have enetered invalid image Url!'),*/
-body('description').isLength({max:200}).withMessage('Invalid review must be max 200 characters'),
-body('category').isIn([`vehicles`, `estate`, `electronics`, `furniture`, `other`]).withMessage('Wrong category!'),
-
 async (req,res)=>{
     try {
        

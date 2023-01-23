@@ -1,38 +1,39 @@
-    <section id="register-section" class="narrow">
+<main>
 
-                <h1 class="item">Register</h1>
+    <section id="register-page">
 
-                <div class="item padded align-center">
+        <article class="register-page-container">
+            <form method="post" class="register-page-form">
+                <h2>Register</h2>
+                <p>Join us and find the perfect job.</p>
 
-                    <form class="aligned" method="post">
+                <label for="email">Email:</label>
+                <input type="text" id="email" placeholder="petar@abv.bg" name="email" value ="{{#if errors}}{{instance.email}}{{/if}}">
 
-                        <label>
-                            <span>Email</span>
-                            <input type="text" name="email" value ="{{#if errors}}{{email}}{{/if}}">
-                        </label>
-                        <label>
-                            <span>First name</span>
-                            <input type="text" name="firstName" value ="{{#if errors}}{{firstName}}{{/if}}">
-                        </label>
-                        <label>
-                            <span>Last name</span>
-                            <input type="text" name="lastName" value ="{{#if errors}}{{lastName}}{{/if}}">
-                        </label>
-                        <label>
-                            <span>Password</span>
-                            <input type="password" name="password">
-                        </label>
-                        <label>
-                            <span>Repeat Password</span>
-                            <input type="password" name="rePassword">
-                        </label>
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="******" name="password">
 
-                        <div class="align-center">
-                            <input class="action" type="submit" value="Create Account">
-                        </div>
+                <label for="repeat-password">Repeat Password:</label>
+                <input type="password" id="repeat-password" placeholder="******" name="rePassword">
 
-                    </form>
+                <label for="description">Briefly describe your skills:</label>
+                <input type="text" id="description" placeholder="Experience with HTML 5, CSS 3, Node.js" name="description" value ="{{#if errors}}{{instance.description}}{{/if}}">
 
-                </div>
+                <article class="register-page-button">
+                    <button class="btn-register">Register</button>
+                </article>
 
-            </section>
+                <article class="account">
+                    <p>Already have an account? <a href="/auth/login">Sign in</a></p>
+                </article>
+
+            </form>
+
+            <article class="register-page-image">
+                <!-- Do not forget to change the path to the image -->
+                <img src="/static/img/job.png" alt="image">
+            </article>
+        </article>
+
+    </section>
+</main>

@@ -1,46 +1,33 @@
-<section id="create-section" class="">
+<main>
 
-    <h1 class="item">New Auction</h1>
+    <section id="create-page">
 
-    <div class="item padded align-center">
+        <article class="create-page-container">
+            <form method="post" class="create-page-form">
+                <h2>Create an ad</h2>
 
-        <form class="layout left large" method="post">
+                <label for="headline">Headline:</label>
+                <input type="text" id="headline" placeholder="Front-End Developer with React" name="headline" value ="{{#if errors}}{{body.headline}}{{/if}}">
 
-            <div class="col aligned">
-                <label>
-                    <span>Title</span>
-                    <input type="text" name="title" value ="{{#if errors}}{{body.title}}{{/if}}"></label>
-                <label>
-                    <span>Category</span>
-                    <select name="category">
-                        <option value="estate" {{optionSelected 'estate' body.paymentMethod}}>Real Estate</option>
-                        <option value="vehicles" {{optionSelected 'vehicles' body.paymentMethod}}>Vehicles</option>
-                        <option value="furniture" {{optionSelected 'furniture' body.paymentMethod}}>Furniture</option>
-                        <option value="electronics" {{optionSelected 'electronics' body.paymentMethod}}>Electronics</option>
-                        <option value="other" {{optionSelected 'oher' body.paymentMethod}}>Other</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Image URL</span>
-                    <input type="text" name="imageUrl" value ="{{#if errors}}{{body.imageUrl}}{{/if}}"></label>
-                <label>
-                    <span>Starting price</span>
-                    <input type="number" name="price" value ="{{#if errors}}{{body.price}}{{/if}}"></label>
-            </div>
+                <label for="location">Location:</label>
+                <input type="text" id="location" placeholder="Ruse, Bulgaria" name="location" value ="{{#if errors}}{{body.location}}{{/if}}">
 
-            <div class="content pad-med align-center vertical">
-                <label>
-                    <span>Description</span>
-                    <textarea name="description">{{#if errors}}{{body.description}}{{/if}}</textarea>
-                </label>
+                <label for="company-name">Company name:</label>
+                <input type="text" id="company-name" placeholder="Digital Solutions" name="companyName" value ="{{#if errors}}{{body.companyName}}{{/if}}">
 
-                <div class="align-center">
-                    <input class="action" type="submit" value="Publish Item">
-                </div>
-            </div>
+                <label for="company-description">Company description:</label>
+                <input type="text" id="company-description" placeholder="We are developing a web application" name="descriptionCompany" value ="{{#if errors}}{{body.descriptionCompany}}{{/if}}">
 
-        </form>
+                <article class="create-page-button">
+                    <button class="btn-create">Create</button>
+                </article>
+            </form>
 
-    </div>
+            <article class="create-page-image">
+                <!-- Do not forget to change the path to the image -->
+                <img src="/static/img/job.png" alt="image">
+            </article>
+        </article>
 
-</section>
+    </section>
+</main>

@@ -3,16 +3,18 @@ let regexURL=/^http[s]*:\/\/[a-zA-Z0-9._!@#$%^&*?]*$/;
 //TO DO add user properties and validation according to assignment
 
 let courseSchema=new Schema({
-    title:{type:String, required:true},
-    category:{type:String,required:true,enum: [`vehicles`, `estate`, `electronics`, `furniture`, `other`]},
-    price:{type:Number,required:true},
-    description:{type:String},
-    imageUrl:{type:String/*,required:true/*,validate:{
+    headline:{type:String, required:true,minLength:4},
+    location:{type:String, required:true,minLength:8},
+    //category:{type:String,required:true,enum: [`vehicles`, `estate`, `electronics`, `furniture`, `other`]},
+    //price:{type:Number,required:true},
+    descriptionCompany:{type:String,required:true,maxLength:40},
+    /*imageUrl:{type:String,required:true/*,validate:{
         validator:(value)=>{
             return regexURL.test(value);
         },
         message:(props)=>{return `${props.value} is not a valid image URL` }
-    }*/},
+    }},*/
+    companyName:{type:String,minLength:3},
     createdAt:{type:Date,required:true,default:Date.now(),immutable: true},
     enrolledUsers:{type:[Types.ObjectId],default:[],ref:'User'},
     owner:{type:Types.ObjectId,required:true,ref:'User'},

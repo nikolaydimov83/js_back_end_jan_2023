@@ -13,11 +13,6 @@ createInstanceController.get('/',(req,res)=>{
 
 createInstanceController.post('/',
 
-body('title').isLength({min:4}).withMessage('Invalid title length must be at least 4 characters'),
-body('price').isFloat({gt:0.0}).withMessage('Price must be positive number'),
-/*body('imageUrl').isURL({ protocols: ['http','https']}).withMessage('You have enetered invalid image Url!'),*/
-body('description').isLength({max:200}).withMessage('Invalid review must be max 200 characters'),
-body('category').isIn([`vehicles`, `estate`, `electronics`, `furniture`, `other`]).withMessage('Wrong category!'),
 async (req,res)=>{
     try {
         

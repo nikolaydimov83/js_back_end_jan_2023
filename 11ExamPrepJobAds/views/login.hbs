@@ -1,28 +1,33 @@
+<main>
 
+    <section id="login-page">
 
-            <section id="login-section" class="narrow">
+        <article class="login-page-container">
 
-                <h1 class="item">Login</h1>
+            <form method="post" class="login-page-form">
+                <h2>Login</h2>
+                <p>Welcome, see the new ads!</p>
 
-                <div class="item padded align-center">
+                <label for="email">Email:</label>
+                <input type="text" id="email" placeholder="petar@abv.bg" name="email" value ="{{#if errors}}{{instance.email}}{{/if}}">
 
-                    <form class="aligned" method="post">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="******" name="password">
 
-                        <label>
-                            <span>Email</span>
-                            <input type="text" name="email" value ="{{#if errors}}{{email}}{{/if}}">
-                        </label>
-                        <label>
-                            <span>Password</span>
-                            <input type="password" name="password">
-                        </label>
+                <article class="login-page-button">
+                    <button class="btn-login">Login</button>
+                </article>
 
-                        <div class="align-center">
-                            <input class="action" type="submit" value="Sign In">
-                        </div>
+                <article class="no-account">
+                    <p>Don't have an account? <a href="/auth/register">Sign up</a></p>
+                </article>
+            </form>
 
-                    </form>
+            <article class="login-page-image">
+                <!-- Do not forget to change the path to the image -->
+                <img src="/static/img/job.png" alt="job-image">
+            </article>
+        </article>
 
-                </div>
-
-            </section>
+    </section>
+</main>

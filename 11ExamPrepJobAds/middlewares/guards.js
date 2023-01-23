@@ -1,11 +1,11 @@
 const { getById } = require("../services/instanceServices");
 
 
-const pathsReqOwnership=['edit','delete','close'];
+const pathsReqOwnership=['edit','delete',/*'close'*/];
 const guestAllowedPaths=['auth','','catalog',`details`];
 const userForbiddenPaths=['auth'];
 const ownerForbiddenPaths=['enroll']
-const allPaths=['auth','','catalog',`details`,'enroll','edit','delete','create','home','close','closed']
+const allPaths=['auth','','catalog',`details`,'enroll','edit','delete','create','home'/*,'close','closed'*/]
 
 
 
@@ -25,6 +25,8 @@ module.exports=()=>async (req,res,next)=>{
             }else{
                 res.locals.isOwner=true;
             }
+        }else{
+            res.locals.isOwner=false;
         }
         //checks if the specific path requires ownership
         if (pathsReqOwnership.indexOf(requestType)>-1){
@@ -35,7 +37,7 @@ module.exports=()=>async (req,res,next)=>{
             }
             //if the path requires ownership but the instance has different owner than the requstor ID
             if ((req.userData._id.toString()!=instance.owner._id.toString())){
-                res.render('home')
+                res.redirect('/');
                 return
             }
             
@@ -43,13 +45,13 @@ module.exports=()=>async (req,res,next)=>{
         }
         //path forbiden to owner
         if (res.locals.isOwner&&ownerForbiddenPaths.includes(requestType)){
-            res.render('home');
+            res.redirect('/');
             return
         }
         //if the path is forbidden to logged user
         if (userForbiddenPaths.includes(requestType)){
             if(req.url.split('/')[2]!='logout'){
-                res.render('home');
+                res.redirect('/');
                 return
             }
             
