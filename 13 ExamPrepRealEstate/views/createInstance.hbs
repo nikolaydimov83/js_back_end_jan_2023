@@ -1,0 +1,51 @@
+<main>
+    <section id="create-page">
+        <div class="create-container">
+            <div class="box-image"></div>
+
+            <h2 class="box-heading"> Add new home</h2>
+
+
+            <form class="form" method="post">
+                <div class="input">
+                    <input type="text" class="input-field" id="home-name" placeholder="Real House Luxury Villa..." name="name" value ="{{#if errors}}{{body.name}}{{/if}}" />
+                    <label class="home-name">Name:</label>
+                </div>
+                <div class="input">
+                    <input type="text" class="input-field" id="type" placeholder="Villa..." name="type" value ="{{#if errors}}{{body.type}}{{/if}}" />
+                    <label class="type">Property Type:</label>
+                </div>
+                <div class="input">
+                    <input type="number" class="input-field" id="year" placeholder="2018..." name="year" value ="{{#if errors}}{{body.year}}{{/if}}" />
+                    <label class="year">Year Built:</label>
+                </div>
+                <div class="input">
+                    <input type="text" class="input-field" id="city" placeholder="Sofia..." name="city" value ="{{#if errors}}{{body.city}}{{/if}}" />
+                    <label class="city">City</label>
+                </div>
+
+                <div class="input">
+                    <input type="text" class="input-field" id="homeImage" placeholder="Image..." name="imageUrl" value ="{{#if errors}}{{body.imageUrl}}{{/if}}" />
+                    <label class="homeImage">Home Image:</label>
+                </div>
+
+                <div class="input">
+                    <input type="text" class="input-field" id="description" placeholder="Description..." name="description" value ="{{#if errors}}{{body.description}}{{/if}}" />
+                    <label class="description">Property Description:</label>
+                </div>
+
+                <div class="input">
+                    <input type="number" class="input-field" id="availablePieces" placeholder="1" name="availablePieces" value ="{{#if errors}}{{body.availablePieces}}{{/if}}" />
+                    <label class="availablePieces">Available pieces:</label>
+                </div>
+
+                <div class="create-action">
+                    <button class="create-button">Add</button>
+                </div>
+
+
+            </form>
+        </div>
+    </section>
+
+</main>
