@@ -24,7 +24,7 @@ async (req,res)=>{
         instance.owner=req.userData._id;
         let createdInstance=await create(instance);
         await assignInstanceToUser(req,createdInstance)
-        res.redirect('/catalog');
+        res.redirect('/');
         
 
     } catch (error) {

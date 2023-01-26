@@ -27,6 +27,7 @@ async function register(userData){
     //TO DO check how the repass is in the form
     delete userData.rePassword;
     const user=await User.create(userData);
+    decorateSingleUser(user);
 
     //TO DO see assignment if registration creates user session
     const token=await createToken(user);
@@ -36,7 +37,8 @@ async function register(userData){
 
 async function login(userData){
 //To Do check if user checks with email or username
-    let userFromDB=await User.findOne({email:userData.email}).lean();
+    let userFromDB=await User.findOne({email:userData.email}).populate('enrolled').populate('offered').lean();
+    decorateSingleUser(userFromDB);
     if (!userFromDB){
         throw new Error('Wrong username or password');
     }
@@ -67,7 +69,8 @@ async function verifyToken(req,res){
             throw new Error('You are not authenticated!');
         }else{
             const decodedToken = jwt.verify(req.cookies.token,JWT_SECRET);
-            let user=await User.findById(decodedToken._id).lean();
+            let user=await User.findById(decodedToken._id).populate('enrolled').populate('offered').lean();
+            decorateSingleUser(user);
             if(user){
                 return user
             }else{
@@ -102,7 +105,7 @@ async function findUserById(id){
 function decorateSingleUser(user){
     if (user){
         user.offeredAsString=user.offered.map((instance)=>instance.title).join(', ');
-        user.enrolledAsString=user.enrolled.map((instance)=>instance.title).join(', ');
+        user.enrolledAsString=user.enrolled.map((instance)=>instance.name).join('; ');
 
     }
     

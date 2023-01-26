@@ -1,65 +1,32 @@
-<main>
+<section id="viewhotelDetails">
+    <h2>Details</h2>
+    <div class="hotel-ticket">
+        <div class="hotel-left">
+            <img src="{{instance.imageUrl}}"
+                alt="">
+        </div>
+        <div class="hotel-right">
+            <div>
+                <h3>{{instance.name}}</h3>
+            </div>
+            <div>
+                {{instance.city}}
+            </div>
+            <p><span >Free rooms: {{instance.currentAvailablePieces}}</span> </p>
+            {{#if isLogged}}
+            {{#if isOwner}}
+                <a href="/edit/{{instance._id}}" class="edit">Edit</a>
+                <a href="/delete/{{instance._id}}" class="remove">Delete</a>
+            {{else}}
+            {{#if instance.hasEnrolled}}
+            <p><span class="green">You already have booked a room</span> </p>
+            {{else}}
+            <a href="/enroll/{{instance._id}}" class="book">Book</a>
+            {{/if}}
+            {{/if}}
 
-            <section id="details-page">
+            {{/if}}
+        </div>
 
-                <div class="main_card">
-                    <div class="card_left">
-                        <div class="card_datails">
-
-                            <h1>Title: {{instance.title}}</h1>
-                            <h3>Created by an author: {{instance.owner.firstName}} {{instance.owner.lastName}}</h3>
-                            <div class="card_animal">
-                                <p class="card-keyword">Keyword: {{instance.keyWord}}</p>
-                                <p class="card-location">Location: {{instance.location}}</p>
-                                <p class="card-date">Date: {{instance.date}}</p>
-                            </div>
-
-                            <p class="disc">Description: {{instance.description}}</p>
-
-                            {{#if isLogged}}
-                            <div class="social-btn">
-                                {{#if isOwner}}
-                                <a href="/edit/{{instance._id}}" class="edit-btn">Edit</a>
-                                <a href="/delete/{{instance._id}}" class="del-btn">Delete</a>
-                                {{else}}
-                                {{#if instance.hasEnrolled}}
-                                    <p class="thanks-for-vote">Thanks For Voting</p>
-                                {{else}}
-                                <a href="/enroll/{{instance._id}}/upvote" class="vote-up">UpVote +1</a>
-                                <a href="/enroll/{{instance._id}}/downvote" class="vote-down">DownVote -1</a>
-                                <!-- logged in user who has already voted-->
-                                {{/if}}
-                                {{/if}}
-                            </div>
-                            {{/if}}
-                        </div>
-                    </div>
-                    <div class="card_right">
-                        <img src="{{instance.imageUrl}}" alt="image">
-                    </div>
-                </div>
-
-            </section>
-
-            <section id="votes">
-                <div class="vote-info">
-                    <div class="card_left">
-                        <div class="card_datails">
-                            <h1>Votes</h1>
-                            <div class="card_vote">
-                                <!-- Show the rating of votes, if there are no votes yet, the number must be 0. -->
-                                <p class="PV">Total rating of votes: {{instance.rating}}</p>
-                            </div>
-                            {{#if instance.numberOfEnrolledUsers}}
-                            
-                            <p class="disc">People who voted for the post - {{instance.enrolledUserNames}}</p>
-                            {{else}}
-                            <!-- If not display: -->
-                            <p class="disc">People who voted for the post - No one has voted yet.</p>
-                            {{/if}}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </main>
+    </div>
+</section>

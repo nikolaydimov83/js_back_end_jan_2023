@@ -4,7 +4,7 @@ const { parseError, checkUserEnrolled } = require('../util/utils');
 
 const enrollInstanceController=require('express').Router();
 
-enrollInstanceController.get('/:id/:voteType',async (req,res)=>{
+enrollInstanceController.get('/:id',async (req,res)=>{
     try {
         const instance=await getById(req.params.id);
 
@@ -43,12 +43,15 @@ enrollInstanceController.get('/:id/:voteType',async (req,res)=>{
         
         await enrollUser(req,instance);
         instance.enrolledUsers.push(req.userData._id);
-        if (req.params.voteType=='upvote'){
+        /*if (req.params.voteType=='upvote'){
             instance.rating++
         }else if (req.params.voteType=='downvote') {
             instance.rating--
         }else{
             throw new Error('You can only vote UP or vote down!')
+        }*/
+        if (instance.currentAvailablePieces<1){
+            throw new Error('No free rooms!');
         }
         await replaceById(req,instance);
         res.redirect(`/details/${req.params.id}`);
@@ -60,7 +63,7 @@ enrollInstanceController.get('/:id/:voteType',async (req,res)=>{
     } catch (error) {
         let errors=parseError(error);
         const instance=error.instance;
-        const user=error.user;
+        const user=req.userData;
         //res.render('detailsInstance',{errors,instance,user});
         res.render(`detailsInstance`,{errors,instance,user});
     }
