@@ -1,0 +1,17 @@
+<section id="viewAddhotel" method="post">
+    <h2>Edit existing hotel</h2>
+    <form id="formAddhotel">
+        <label for="hotel">Hotel name:</label>
+        <input type="text" id="hotel" name="name" value="{{body.name}}">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" value="{{body.city}}">
+        <label for="free-rooms">Free rooms:</label>
+        <input type="number" id="free-rooms" name="availablePieces" value ="{{body.availablePieces}}">
+        <label for="imgUrl">Image:</label>
+        <input type="text" id="imgUrl" name="imageUrl" value ="{{body.imageUrl}}">
+
+        <input type="submit" class="create" value="Add">
+    </form>
+</section>
+
+           
