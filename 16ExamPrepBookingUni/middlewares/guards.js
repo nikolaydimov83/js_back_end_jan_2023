@@ -2,7 +2,7 @@ const { getById } = require("../services/instanceServices");
 
 
 const pathsReqOwnership=['edit','delete',/*'close'*/];
-const guestAllowedPaths=['auth','','catalog',`details`];
+const guestAllowedPaths=['auth',''];
 const userForbiddenPaths=['auth'];
 const ownerForbiddenPaths=['enroll']
 const allPaths=['auth','','catalog',`details`,'enroll','edit','delete','create','home'/*,'close','closed'*/,'profile']
