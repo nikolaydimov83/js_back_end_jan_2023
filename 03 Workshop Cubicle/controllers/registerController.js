@@ -42,9 +42,9 @@ async (req,res)=>{
         res.cookie('token',token);
         res.redirect(301,'/');
     }catch(err){
-        let { fields, username } = extractErrorFieldsAndUsername(req, err);
+       // let { fields, username } = extractErrorFieldsAndUsername(req, err);
 
-        res.render('register',{fields,username})
+        res.render('register')
     }
 
 });
