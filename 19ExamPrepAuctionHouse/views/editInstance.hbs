@@ -1,0 +1,53 @@
+<section id="create-section">
+
+    <h1 class="item">Edit Auction</h1>
+
+    <div class="item padded align-center">
+
+        <form class="layout left large" method="post">
+
+            <div class="col aligned">
+                <label>
+                    <span>Title</span>
+                    <input type="text" name="title" value ="{{body.title}}"></label>
+                <label>
+                    <span>Category</span>
+                    <select name="">
+                        <option value="estate" {{optionSelected "estate" body.category}}>Real Estate</option>
+                        <option value="vehicles" {{optionSelected "vehicles" body.category}}>Vehicles</option>
+                        <option value="furniture" {{optionSelected "furniture" body.category}}>Furniture</option>
+                        <option value="electronics" {{optionSelected "electronics" body.category}}>Electronics</option>
+                        <option value="other" {{optionSelected "other" body.category}}>Other</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Image URL</span>
+                    <input type="text" name="imageUrl" value ="{{body.imageUrl}}">
+                </label>
+                <label>
+                    <span>Starting price</span>
+
+                    <!-- If the current auction has a bidder, this input field should be disabled -->
+                    <input type="number" name="price" value ="{{body.price}}">
+                </label>
+            </div>
+
+            <div class="content pad-med align-center vertical">
+                <label>
+                    <span>Description</span>
+                    <textarea name="description">{{body.description}}
+                    </textarea>
+                </label>
+
+                <div class="align-center">
+                    <input class="action" type="submit" value="Update Listing">
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+           
