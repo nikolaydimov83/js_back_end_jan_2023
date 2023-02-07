@@ -66,8 +66,8 @@ module.exports=()=>async (req,res,next)=>{
         
         if (guestAllowedPaths.includes(requestType)){
             if(req.url.split('/')[2]=='logout'){
-                //res.redirect('/auth/login');
-                res.render('404');
+                res.redirect('/auth/login');
+                //res.render('404');
                 return
             }else{
                 next();
@@ -77,8 +77,8 @@ module.exports=()=>async (req,res,next)=>{
         
         else{
             if(allPaths.includes(requestType)){
-                //res.redirect('/auth/login')
-                res.render('404');
+                res.redirect('/auth/login')
+                //res.render('404');
                 return
             }
             
