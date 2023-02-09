@@ -1,0 +1,31 @@
+<main>
+    <form class="search" method="post">
+        <input type="search" name="searchName" placeholder="Search here..." value="{{body.serachName}}">
+        <button type="submit">Search</button>
+    </form>
+    {{#if body}}
+    <section id="find-section">
+        
+        <!-- If there are any matching matches from the search, show each of them -->
+            {{#if instances}}
+                {{#each instances}}
+                    {{>'searchCard'}}
+                {{/each}}
+
+            {{else}}
+                <div class="no-data-listing">
+                    <p class="no-offer">No match was found for the submitted type...</p>
+                </div>
+            {{/if}}
+
+
+        <!-- If there are no search matches, show: -->
+        <!--<div class="no-data-listing">
+            <p class="no-offer">No match was found for the submitted type...</p>
+        </div>-->
+    </section>
+    {{/if}}
+</main>
+
+
+

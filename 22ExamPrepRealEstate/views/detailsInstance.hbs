@@ -1,0 +1,56 @@
+<main>
+    <section id="deatils-page">
+        <div class="wrapper">
+            <div class="product-img">
+                <img src="{{instance.imageUrl}}">
+            </div>
+            <div class="product-info">
+                <div class="product-text">
+                    <div class="product-text">
+                        <h1>Name: {{instance.name}}</h1>
+                        <h2>Type: {{instance.type}}</h2>
+                        <h4>Year: {{instance.year}}</h4>
+                        <h4>City: {{instance.city}}</h4>
+                        <p>Description: {{instance.description}}</p>
+                        {{#if instance.numberOfEnrolledUsers}}
+                        <!-- if there are already tenants of the housing, separate their names with a comma and a space ", "  -->
+                        <p>People rented this housing: {{instance.enrolledUserNames}}</p>
+                        {{else}}
+
+                        <!-- If not display: -->
+                        <p>People rented this housing: There are no tenants yet.</p>
+
+                        {{/if}}
+                    </div>
+                </div>
+                {{#if isLogged}}
+                <!-- if there is no registered user, do not display buttons-->
+                <div class="product-btn">
+                    <!-- Only for registered user and creator of the housing offer-->
+                    {{#if isOwner}}
+                    <a href="/edit/{{instance._id}}" class="edit">Edit</a>
+                    <a href="/delete/{{instance._id}}" class="remove">Delete</a>
+                    
+                    <!-- logged in user with available pieces-->
+                    {{else}}
+                        {{#if instance.hasEnrolled}}
+                            <p class="alRentHome">You have already rent this home</p>
+                        {{else}}
+                            {{#if instance.currentAvailablePieces}}
+                                <a href="/enroll/{{instance._id}}" class="rentHome">Rent a home, available {{instance.currentAvailablePieces}} housing</a>
+                            {{else}}
+                                <p class="no-housing">No Housing Available!</p>
+                            {{/if}}
+                        {{/if}}
+                    
+
+
+                    <!-- logged in user with no available pieces-->
+                    
+                    {{/if}}
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </section>
+</main>
